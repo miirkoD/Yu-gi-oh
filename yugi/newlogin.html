@@ -11,20 +11,20 @@
 
 <body>
     <div class="container">
-        <form action="login.html">
-            <div class="form field">
-                Ime <input type="text" name="name" required>
-                <p></p>
-                Prezime <input type="text" name="surname" required>
-                <p></p>
-                Username <input type="text" name="username" id="username" required>
-                <p></p>
-                <span class="hovertext" data-hover="Lozinaka mora imati 1 broj i 6 karaktera">Lozinka <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}" required></span>
+        <!-- <form action="login.html"> -->
+        <div class="form field">
+            Ime <input type="text" id="name" required>
+            <p></p>
+            Prezime <input type="text" id="surname" required>
+            <p></p>
+            Username <input type="text" id="username" id="username" required>
+            <p></p>
+            <span class="hovertext" data-hover="Lozinaka mora imati 1 broj i 6 karaktera">Lozinka <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}" required></span>
 
-                <p></p>
-                <input type="submit" value="Register" id="submit" disabled>
-            </div>
-        </form>
+            <p></p>
+            <button onclick="register()">  registrij se</button>
+        </div>
+        <!-- </form> -->
 
     </div>
     <div id="message">

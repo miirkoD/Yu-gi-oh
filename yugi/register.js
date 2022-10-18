@@ -1,7 +1,6 @@
 var params = window.location.search;
 var urlParams = new URLSearchParams(params);
 //import { user } from 'script.js'
-
 //dodeljivanje vrednosti
 var submitButton = document.getElementById("submit");
 var usernameField = document.getElementById("username");
@@ -12,12 +11,6 @@ var surnameField = document.getElementById("surname")
 var number = document.getElementById("number");
 var length = document.getElementById("length");
 
-var reg_user = [{
-    name: urlParams.get("name"),
-    surname: urlParams.get("surname"),
-    username: urlParams.get("username"),
-    password: urlParams.get("password")
-}]
 
 
 //ako je username i password ipunjen submit je omogucen
@@ -34,60 +27,70 @@ function isPasswordValid(password) {
 
 }
 
-function dodajUlistu() {
-    var a = {
-        name: urlParams.get("name"),
-        surname: urlParams.get("surname"),
-        username: urlParams.get("username"),
-        password: urlParams.get("password"),
+function register() {
+    // validaije itr..
+    // ako je sve kako trba
+    var reg_user = {
+        name: nameField.value,
+        surname: surnameField.value,
+        username: usernameField.value,
+        password: passwordField.value,
     }
-    reg_user.push(a);
+    var list = localStorage.getItem('users');
+    if (list == null)
+        list = [reg_user];
+    else
+        list.push(reg_user);
+    localStorage.setItem('users', JSON.stringify(list));
+
 }
 
 
 function usernameExist(username) {
-    var exist = false;
-    user.forEach((el, index) => {
-        if (el.name == username) {
-            exist = true;
-            var existitem = document.createElement("p");
-            existitem.innerText = user.name + "vec postoji";
-            container.append(existitem);
-        } else {
-            dodajUlistu();
-            localStorage.setItem('users', JSON.stringify(reg_user));
+    return true;
+    // var exist = false;
+    // user.forEach((el, index) => {
+    //     if (el.name == username) {
+    //         exist = true;
+    //         var existitem = document.createElement("p");
+    //         existitem.innerText = user.name + "vec postoji";
+    //         container.append(existitem);
+    //     } else {
 
-        }
-    });
-    return exist;
+    //     }
+    // });
+    // return exist;
 }
 
 /* provera lozinku da li ispunjava sve sto treba */
 
-passwordField.onkeyup = function() {
-    var numbers = /[0-9]/g;
-    if (passwordField.value.match(numbers)) {
-        number.classList.remove("invalid");
-        number.classList.add("valid");
-    } else {
-        number.classList.remove("valid");
-        number.classList.add("invalid");
-    }
-    var upperCaseLetters = /[A-Z]/g;
-    if (passwordField.value.match(upperCaseLetters)) {
-        capital.classList.remove("invalid");
-        capital.classList.add("valid");
-    } else {
-        capital.classList.remove("valid");
-        capital.classList.add("invalid");
-    }
 
-    if (passwordField.value.length >= 7) {
-        length.classList.remove("invalid");
-        length.classList.add("valid");
-    } else {
-        length.classList.remove("valid");
-        length.classList.add("invalid");
+passwordField.onkeyup = function() {
+    {
+        var numbers = /[0-9]/g;
+        if (passwordField.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+        var upperCaseLetters = /[A-Z]/g;
+        if (passwordField.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+
+        if (passwordField.value.length >= 7) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
     }
 }
 
@@ -112,5 +115,4 @@ Items.forEach((el) => {
             };
             Items.push(a);
             KreirajElement(a);
-        }
- */
+        }*/
